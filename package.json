@@ -1,14 +1,14 @@
 {
-  "name": "@j-t-mcc/vue3-chartjs",
+  "name": "@vflorian2000/vue3-chartjs",
   "version": "1.2.0",
-  "author": "Tyson McCarney <info@tysonmccarney.com> (https://tysonmccarney.com)",
-  "description": "Vue3 wrapper for Chart.js",
+  "author": "Florian Vamosi <florian@ultimatewaterprobe.com> ",
+  "description": "Vue3 wrapper for Chart.js (maybe now nuxt 3)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/J-T-McC/vue3-chartjs"
+    "url": "https://github.com/vflorian2000/vue3-chartjs"
   },
-  "homepage": "https://github.com/J-T-McC/vue3-chartjs/blob/main/README.md",
+  "homepage": "https://github.com/vflorian2000/vue3-chartjs/",
   "keywords": [
     "chart.js",
     "vue3"
@@ -19,10 +19,10 @@
     "LICENSE"
   ],
   "main": "./dist/vue3-chartjs.umd.js",
-  "module": "./dist/vue3-chartjs.es.js",
+  "module": "./dist/vue3-chartjs.umd.js",
   "exports": {
     ".": {
-      "import": "./dist/vue3-chartjs.es.js",
+      "import": "./dist/vue3-chartjs.umd.js",
       "require": "./dist/vue3-chartjs.umd.js"
     }
   },
