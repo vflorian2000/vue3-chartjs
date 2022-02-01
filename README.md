@@ -1,13 +1,6 @@
-# Vue3 ChartJS Wrapper
+# Vue3 (Nuxt 3) ChartJS Wrapper
 
-[![Coverage Status](https://coveralls.io/repos/github/J-T-McC/vue3-chartjs/badge.svg?branch=main)](https://coveralls.io/github/J-T-McC/vue3-chartjs?branch=main)
-[![Build Status](https://travis-ci.com/J-T-McC/vue3-chartjs.svg?branch=main)](https://app.travis-ci.com/github/J-T-McC/vue3-chartjs)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/J-T-McC/vue3-chartjs/pulls)
-![npm](https://img.shields.io/npm/dt/@j-t-mcc/vue3-chartjs)
-
-Basic [ChartJS 3](https://www.chartjs.org/) wrapper for [Vue3](https://v3.vuejs.org/)
-
-For ChartJS 2, see [v0.3.0](https://github.com/J-T-McC/vue3-chartjs/tree/0.3.0)
+Fork of https://github.com/J-T-McC/vue3-chartjs Completely unmaintained and unsupported, use at your own risk.
 
 ## Requirements
 
@@ -17,9 +10,9 @@ For ChartJS 2, see [v0.3.0](https://github.com/J-T-McC/vue3-chartjs/tree/0.3.0)
 ## Installation
 
 ```shell script
-yarn add chart.js @j-t-mcc/vue3-chartjs
+yarn add chart.js @vflorian2000/vue3-chartjs
 
-npm install chart.js @j-t-mcc/vue3-chartjs
+npm install chart.js @vflorian2000/vue3-chartjs
 ```
 
 ## Configuration
@@ -59,15 +52,6 @@ ChartJS charts are responsive by default. If you wish to have a fixed sized char
   }
 ```
 
-## Sandbox Examples
-
-* [Pie Chart](https://codesandbox.io/s/pie-chart-848by?file=/src/App.vue)
-* [Doughnut Chart](https://codesandbox.io/s/doughnut-chart-g7il4?file=/src/App.vue)
-* [Bar Chart](https://codesandbox.io/s/bar-chart-kog87?file=/src/App.vue)
-* [Radar Chart](https://codesandbox.io/s/radar-chart-j2dyp?file=/src/App.vue)
-* [Line Chart with Plugins](https://codesandbox.io/s/plugin-example-o4y3q?file=/src/App.vue)
-* [Events & Exports](https://codesandbox.io/s/events-and-exports-q5g9k?file=/src/App.vue)
-
 View the [ChartJS Docs](https://www.chartjs.org/docs/latest/samples/bar/vertical.html) for more examples.
 
 ## Events
@@ -101,46 +85,52 @@ See the [ChartJS Docs](https://www.chartjs.org/docs/latest/developers/api.html) 
 
 Below are some basic chart examples to get started.
 
-### Simple Chart
+### Simple Chart Nuxt 3 Component
 
 ```vue
 <template>
-  <div style="height:600px;width: 600px; display: flex;flex-direction:column;">
+  <div style="display: flex; flex-direction: column;">
     <vue3-chart-js
-        :id="doughnutChart.id"
-        :type="doughnutChart.type"
-        :data="doughnutChart.data"
-        @before-render="beforeRenderLogic"
+      :id="doughnutChart.id"
+      :type="doughnutChart.type"
+      :data="doughnutChart.data"
+      @before-render="beforeRenderLogic"
+      style="display: flex; flex-direction: column; width: 100%; height: 100%;"
     ></vue3-chart-js>
   </div>
 </template>
 
 <script>
-import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
+import Vue3ChartJs from '@vflorian2000/vue3-chartjs'
 
 export default {
-  name: 'App',
+  name: 'Chart',
+  props: {
+    attr: {
+      type: String,
+      required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
     Vue3ChartJs,
   },
-  setup () {
+  setup(props) {
     const doughnutChart = {
-      id: 'doughnut',
-      type: 'doughnut',
+      id: props.attr,
+      type: props.type,
       data: {
         labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
         datasets: [
           {
-            backgroundColor: [
-              '#41B883',
-              '#E46651',
-              '#00D8FF',
-              '#DD1B16'
-            ],
-            data: [40, 20, 80, 10]
-          }
-        ]
-      }
+            backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+            data: [40, 20, 80, 10],
+          },
+        ],
+      },
     }
 
     const beforeRenderLogic = (event) => {
@@ -152,7 +142,7 @@ export default {
 
     return {
       doughnutChart,
-      beforeRenderLogic
+      beforeRenderLogic,
     }
   },
 }
@@ -182,7 +172,7 @@ See the [ChartJS docs](https://www.chartjs.org/docs/latest/developers/updates.ht
 
 <script>
 import { ref } from 'vue'
-import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
+import Vue3ChartJs from '@vflorian2000/vue3-chartjs'
 
 export default {
   name: 'App',
@@ -263,7 +253,7 @@ export default {
 
 <script>
 import { ref } from 'vue'
-import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
+import Vue3ChartJs from '@vflorian2000/vue3-chartjs'
 
 export default {
   name: 'App',
@@ -324,7 +314,7 @@ Global plugins can be registered one of two ways:
 #### Via Component Install
 
 ```javascript
-import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
+import Vue3ChartJs from '@vflorian2000/vue3-chartjs'
 import zoomPlugin from 'chartjs-plugin-zoom'
 
 const Vue = createApp(App)
@@ -362,7 +352,7 @@ Example usage with locally imported chart component:
 </template>
 
 <script>
-import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
+import Vue3ChartJs from '@vflorian2000/vue3-chartjs'
 import zoomPlugin from 'chartjs-plugin-zoom'
 
 Vue3ChartJs.registerGlobalPlugins([zoomPlugin])
